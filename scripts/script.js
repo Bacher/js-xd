@@ -4,6 +4,8 @@ var app;
 
 $(function() {
 
+    debugger
+
     app = new XD.framework.application({
         title: "Sample Application",
         pages: [
@@ -12,5 +14,7 @@ $(function() {
         ],
         rootPageUri: "index"
     });
+
+    //app.init();
 
 });
