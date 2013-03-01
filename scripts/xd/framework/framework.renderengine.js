@@ -8,14 +8,19 @@
 		},
 
 		show: function(page) {
-			if(page) {
-				$("#viewport").replaceWith($("<div>").attr("id", "viewport")
-					.append($("<p>").text(page.layout))
-					.append($("<br>"))
-					.append($("<button>").text("Change location to 'Index'").on("click", this._navigate).data("_link", "index"))
-					.append($("<br>"))
-					.append($("<button>").text("Change location 'Page 1'").on("click", this._navigate).data("_link", "page1"))
-				);
+		    if(page) {
+		        var cont = XD.app.layoutManager.getContent(page.layout);
+
+		        var content = $("<div>").attr("id", "viewport")
+                                    .append($("<p>").text(page.layout))
+                                    .append($("<br>"))
+                                    .append($("<button>").text("Change location to 'Index'").on("click", this._navigate).data("_link", "index"))
+                                    .append($("<br>"))
+                                    .append($("<button>").text("Change location 'Page 1'").on("click", this._navigate).data("_link", "page1"));
+				
+		        if(cont) content.append(cont);
+
+                $("#viewport").replaceWith(content);
 			} else {
 				$("#viewport").replaceWith($("<div>").attr("id", "viewport")
 					.append($("<p>").text("Bad URI"))

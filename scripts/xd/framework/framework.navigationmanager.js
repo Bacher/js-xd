@@ -44,7 +44,6 @@
                     window.history.replaceState({ xdType: "level2" }, null, "#" + uri);
                     XD.app.navigationManager.navigate(uri, "blank");
                 } else {
-                    alert(3);
                     this._waitPopState = $.Deferred();
                     this._waitPopState.done(function() {
                         // DFD
@@ -75,13 +74,13 @@
             var currentState = this._getState();
 
             if(target === "back") {
-                var backUri = XD.app.history.backState();
+                uri = XD.app.history.backState();
 
                 if(currentState.xdType === "level1") {
                     alert("Выход из приложения");
                     window.history.back();
                 } else {
-                    window.history.replaceState({ xdType: "level2" }, null, "#" + backUri);
+                    window.history.replaceState({ xdType: "level2" }, null, "#" + uri);
                 }
             } else if(target === "current") {
                 XD.app.history.replaceState(uri);
@@ -93,8 +92,6 @@
                 }
             } else {
                 XD.app.history.pushState(uri);
-
-                debugger
 
                 if(!currentState) {
                     window.history.replaceState({ xdType: "level2" }, null, "#" + uri);
